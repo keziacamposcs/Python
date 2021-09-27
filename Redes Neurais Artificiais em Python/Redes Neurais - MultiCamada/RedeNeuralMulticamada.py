@@ -28,12 +28,29 @@ pesos1 = np.array([[-0.017],[-0.893],[0.148]])
 epocas = 100
 
 for j in range(epocas):
+    
+    #Entrada
     camadaEntrada = entradas
     somaSinapse0 = np.dot(camadaEntrada, pesos0)
     camadaOculta = sigmoid(somaSinapse0)
 
+    #Camada de Ativação
     somaSinapse1 = np.dot(camadaOculta, pesos1)
     camadaSaida = sigmoid(somaSinapse1)
 
     erroCamadaSaida = saidas - erroCamadaSaida
     mediaAbsoluta = np.mean(np.abs(erroCamadaSaida))
+
+    derivadaSaida = sigmoidDerivada(camadaSaida)
+    deltaSaida = erroCamadaSaida * derivadaSaida
+
+    pesos1Transposta = pesos1.T
+    deltaSaidaXPeso = deltaSaida.dot(pesos1Transposta)
+    deltaCamadaOculta = deltaSaidaXPeso * sigmoidDerivada(camadaOculta)
+
+    camadaOcultaTransposta = camadaOculta.T
+    pesosNovo1 = camadaOcultaTransposta.dot(deltaSaida)
+    pesos1 = (pesos1 * momento) + (pesosNovo1 * taxaAprendizagem)
+
+    #Finalizando o ajuste dos pesos
+

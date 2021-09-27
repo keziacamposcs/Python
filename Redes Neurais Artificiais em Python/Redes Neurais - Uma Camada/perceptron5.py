@@ -1,10 +1,10 @@
-#Operador E
+#Operador XOR
 
 import numpy as numpy
 
 entradas = ([[0,0],[0,1],[1,0],[1,1]])
 
-saidas = np.array([0,0,0,1])
+saidas = np.array([0,1,1,0])
 
 pesos = np.array([0.0,0.0])
 

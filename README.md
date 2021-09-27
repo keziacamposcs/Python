@@ -1,4 +1,3 @@
-# Python
 Programas em Python (Simples e Complexos).
 
 <h1 align="center">
